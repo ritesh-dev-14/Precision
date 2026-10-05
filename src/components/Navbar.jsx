@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { ArrowUpRight, Menu, X, ShieldCheck } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 
 const links = [
   { path: "/products", label: "Products" },
+  { path: "/#home-applications", label: "Applications" },
+  { path: "/#home-engineering", label: "Engineering" },
   { path: "/about", label: "About" },
-  { path: "/clients", label: "Clients" },
   { path: "/contact", label: "Contact" },
 ];
 
@@ -19,6 +20,7 @@ function MinimalLogoMark() {
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
+        aria-hidden="true"
       >
         <circle cx="12" cy="12" r="8" className="opacity-40" />
         <circle cx="12" cy="12" r="3" />
@@ -30,8 +32,10 @@ function MinimalLogoMark() {
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileOpenOn, setMobileOpenOn] = useState(null);
+  const mobileMenuButton = useRef(null);
   const location = useLocation();
+  const mobileOpen = mobileOpenOn === location.pathname;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -39,17 +43,37 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close mobile drawer on route change
   useEffect(() => {
-    setMobileOpen(false);
-  }, [location.pathname]);
+    if (!location.hash) return undefined;
+
+    const frame = window.requestAnimationFrame(() => {
+      document
+        .getElementById(location.hash.slice(1))
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [location.hash, location.pathname]);
+
+  useEffect(() => {
+    if (!mobileOpen) return undefined;
+
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") {
+        setMobileOpenOn(null);
+        mobileMenuButton.current?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [mobileOpen]);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 select-none ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-xs py-3"
-          : "bg-white border-b border-slate-200 py-4"
+          ? "bg-[#f4f4f1] border-b border-slate-200 py-3"
+          : "bg-[#f4f4f1] border-b border-slate-200 py-4"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -58,7 +82,7 @@ export default function Navbar() {
         <Link
           className="flex items-center gap-3 group cursor-pointer"
           to="/"
-          onClick={() => setMobileOpen(false)}
+          onClick={() => setMobileOpenOn(null)}
         >
           <MinimalLogoMark />
           <div className="flex flex-col leading-none">
@@ -73,20 +97,25 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <nav
-          className="hidden md:flex items-center gap-8"
+          className="hidden lg:flex items-center gap-4 lg:gap-7"
           aria-label="Main navigation"
         >
           {links.map(({ path, label }) => (
             <NavLink
               key={path}
               to={path}
-              className={({ isActive }) =>
-                `text-xs uppercase font-semibold tracking-wider transition-colors py-1 relative ${
-                  isActive
+              className={({ isActive }) => {
+                const isSectionLink = path.startsWith("/#");
+                const active =
+                  isActive &&
+                  (!isSectionLink || location.hash === path.slice(1));
+                return `text-xs uppercase font-semibold tracking-wider transition-colors py-1 relative ${
+                  active
                     ? "text-slate-900 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-slate-900"
                     : "text-slate-600 hover:text-slate-900"
-                }`
-              }
+                }`;
+              }}
+                onClick={() => setMobileOpenOn(null)}
             >
               {label}
             </NavLink>
@@ -94,23 +123,29 @@ export default function Navbar() {
         </nav>
 
         {/* Right CTA & Badge */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-4">
         
 
           <Link
-            className="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold px-4 py-2 rounded-sm text-xs tracking-wider uppercase transition-colors"
+            className="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-700 text-white font-semibold px-4 py-2 text-xs tracking-wider uppercase transition-colors"
             to="/contact"
           >
-            <span className="text-white">Sales Enquiry</span>
+            <span className="text-white">Technical Enquiry</span>
             <ArrowUpRight size={14} className="text-white" />
           </Link>
         </div>
 
         {/* Mobile Toggle Button */}
         <button
-          className="md:hidden p-1.5 text-slate-700 hover:bg-slate-100 rounded-sm transition-colors"
-          onClick={() => setMobileOpen(!mobileOpen)}
+          ref={mobileMenuButton}
+          className="lg:hidden flex min-h-11 min-w-11 items-center justify-center text-slate-700 hover:bg-slate-100 transition-colors"
+          onClick={() =>
+            setMobileOpenOn(mobileOpen ? null : location.pathname)
+          }
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-navigation"
+          type="button"
         >
           {mobileOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -118,18 +153,22 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {mobileOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 px-6 py-6 shadow-lg animate-in slide-in-from-top-2">
-          <nav className="flex flex-col space-y-3">
+        <div className="navigation-drawer lg:hidden absolute top-full left-0 w-full bg-[#f4f4f1] border-b border-slate-200 px-6 py-6">
+          <nav id="mobile-navigation" className="flex flex-col" aria-label="Main navigation">
             {links.map(({ path, label }) => (
               <NavLink
                 key={path}
                 to={path}
-                onClick={() => setMobileOpen(false)}
-                className={({ isActive }) =>
-                  `text-xs uppercase font-medium tracking-wider py-2 border-b border-slate-100 transition-colors ${
-                    isActive ? "text-slate-900 font-bold" : "text-slate-600"
-                  }`
-                }
+                onClick={() => setMobileOpenOn(null)}
+                className={({ isActive }) => {
+                  const isSectionLink = path.startsWith("/#");
+                  const active =
+                    isActive &&
+                    (!isSectionLink || location.hash === path.slice(1));
+                  return `text-xs uppercase font-medium tracking-wider min-h-11 flex items-center border-b border-slate-200 transition-colors ${
+                    active ? "text-slate-900 font-bold" : "text-slate-600"
+                  }`;
+                }}
               >
                 {label}
               </NavLink>
@@ -139,11 +178,11 @@ export default function Navbar() {
               
 
               <Link
-                className="w-full flex items-center justify-center gap-2 bg-slate-900 text-white py-3 rounded-sm text-xs font-semibold tracking-wider uppercase"
+                className="w-full flex items-center justify-center gap-2 bg-slate-900 text-white py-3 text-xs font-semibold tracking-wider uppercase"
                 to="/contact"
-                onClick={() => setMobileOpen(false)}
+                onClick={() => setMobileOpenOn(null)}
               >
-                <span className="text-white">Sales Enquiry</span>
+                <span className="text-white">Technical Enquiry</span>
                 <ArrowUpRight size={15} className="text-white" />
               </Link>
             </div>

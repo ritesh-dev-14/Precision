@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
-:root { --paper: #f5f5f2; --ink: #111111; --muted: #666967; --line: #d7d8d3; --steel: #71838b; --dark: #1a1d1e; font-family: 'Manrope', sans-serif; color: var(--ink); background: var(--paper); font-synthesis: none; }
+:root { --paper: #f5f5f2; --ink: #111111; --muted: #666967; --line: #d7d8d3; --steel: #5a686c; --dark: #1a1d1e; font-family: 'Manrope', sans-serif; color: var(--ink); background: var(--paper); font-synthesis: none; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; min-width: 320px; background: var(--paper); }
@@ -271,4 +271,83 @@ td { padding: 15px 12px; border-top: 1px solid var(--line); white-space: nowrap;
   border-radius: 6px;
   color: #0ea5e9;
   font-weight: 500;
+}
+
+:focus-visible {
+  outline: 2px solid #536c73;
+  outline-offset: 3px;
+}
+
+.navigation-drawer {
+  animation: navigation-drawer-enter 160ms ease-out both;
+}
+
+@keyframes navigation-drawer-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.route-not-found {
+  width: min(1280px, calc(100% - 112px));
+  min-height: 62vh;
+  margin-inline: auto;
+  padding-block: 170px 90px;
+}
+
+.route-not-found h1 {
+  max-width: 720px;
+  margin: 20px 0;
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 550;
+  letter-spacing: -0.065em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.route-not-found > p:not(.eyebrow) {
+  max-width: 520px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.route-not-found > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  margin-top: 28px;
+}
+
+@media (max-width: 600px) {
+  .route-not-found {
+    width: calc(100% - 40px);
+    padding-block: 125px 70px;
+  }
+
+  .route-not-found h1 {
+    font-size: clamp(38px, 10vw, 50px);
+  }
 }

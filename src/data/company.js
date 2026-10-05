@@ -1,22 +1,22 @@
+import { products as productCatalog } from "./products";
+
 export const contact = {
-  email: "[PLACEHOLDER EMAIL]",
-  phone: "[PLACEHOLDER PHONE]",
-  emailLink: "mailto:placeholder@example.com",
-  phoneLink: "tel:+910000000000",
+  email: "sales@precisionmetallurgy.com",
+  phone: "+91 89688 26055",
+  emailLink: "mailto:sales@precisionmetallurgy.com",
+  phoneLink: "tel:+918968826055",
 };
 
 export const offices = {
   registered: [
-    "Plot No. 336,",
-    "Sector 56, Phase V,",
-    "SONIPAT,",
-    "Haryana - 131028",
+    "Plot-336, Sector-56,",
+    "Kundli, Sonipat,",
+    "Haryana-131028",
   ],
   corporate: [
-    "SCF 13-14, 2nd Floor,",
-    "Above HDFC Bank,",
+    "SCF 13-14, 2nd Floor, Above HDFC Bank,",
     "BRS Nagar,",
-    "Ludhiana - 141021",
+    "Ludhiana, 141021",
   ],
 };
 
@@ -24,21 +24,23 @@ export const company = {
   name: "Precision Metallurgy India Private Limited",
   established: "September 2021",
   intro:
-    "Precision Metallurgy India Private Limited was established in September 2021 with a clear vision: to provide high-quality rolling solutions that enhance the efficiency of hot rolling mills.",
+    "Precision Metallurgy India Private Limited is a specialized supplier of high-performance rolls and rolling mill components for the steel industry, with a focus on TMT bar and wire rod rolling mills.",
   supplier:
-    "As a trusted importer and supplier of Tungsten Carbide Rings, HSS Rolls, and other rolling mill products, we don't just sell products—we deliver value-driven solutions.",
+    "Our product portfolio includes TC Rings, composite rolls, HSS rolls, SGI rolls, Adamite rolls, pinch rolls, guide rolls, and other rolls designed for demanding hot rolling applications.",
   expertise:
-    "Our expertise lies not only in offering superior-quality products but also in guiding our customers toward optimal rolling mill performance.",
+    "We work with a strong focus on helping mills improve performance and reduce cost per tonne of production.",
+  reach:
+    "We supply customers across India while progressively expanding our presence into international markets.",
   understanding:
-    "With a deep understanding of the industry, we help steel plants select the right materials, improve production efficiency, and reduce downtime.",
+    "At Precision Metallurgy, our focus goes beyond simply supplying rolls. We aim to understand the operating conditions, production requirements, and challenges of each rolling mill so we can help customers achieve better overall mill performance.",
   quality:
-    "We ensure that our products are of accurate chemical compositions and are of top notch quality.",
+    "A key objective of our business is to help rolling mills reduce their cost per tonne by continuously focusing on product quality, material development, application engineering, and R&D to improve pass life, wear resistance, consistency, and reliability.",
   innovation:
-    "We innovate and deliver solutions that drive our customers' success.",
+    "Longer roll life and improved performance can contribute to fewer roll changes, reduced downtime, lower maintenance requirements, and better annual mill uptime. By continuously improving our products and understanding their performance in actual rolling conditions, we aim to deliver measurable long-term value rather than simply competing on initial purchase price.",
 };
 
 export const vision =
-  "To become a globally trusted and preferred supplier of high-performance rolling mill rolls and components, recognized for delivering exceptional quality, longer service life, and solutions that continuously improve the efficiency and competitiveness of our customers’ rolling mills.";
+  "To become a globally trusted and preferred supplier of high-performance rolling mill rolls and components, recognized for delivering exceptional quality, longer service life, and solutions that continuously improve the efficiency and competitiveness of our customers' rolling mills.";
 
 export const mission =
   "Our mission is to help rolling mills achieve greater productivity and lower cost per tonne through reliable, high-performance rolls and rolling mill components backed by continuous research, product development, and application-focused improvement.";
@@ -58,7 +60,7 @@ export const commitments = [
   ],
   [
     "Minimizing Downtime",
-    "Supporting improvements in roll performance that can reduce roll changes, maintenance interruptions and annual mill downtime.",
+    "Supporting improvements in roll performance that can reduce roll changes, maintenance interruptions, and annual mill downtime.",
   ],
   [
     "Continuous R&D",
@@ -66,10 +68,166 @@ export const commitments = [
   ],
   [
     "Building Long-Term Partnerships",
-    "Developing relationships based on reliability, transparency, technical support and consistent performance.",
+    "Developing relationships based on reliability, transparency, technical support, and consistent performance.",
   ],
   [
     "Expanding Globally",
-    "Building Precision Metallurgy into a trusted international partner for TMT, wire rod and hot rolling mills across global markets.",
+    "Building Precision Metallurgy into a trusted international partner for TMT, wire rod, and hot rolling mills across global markets.",
   ],
+];
+
+const imageForProduct = (id) =>
+  productCatalog.find((product) => product.id === id)?.image;
+const productFor = (id) =>
+  productCatalog.find((product) => product.id === id);
+
+export const portfolio = [
+  {
+    name: "TC Rings",
+    productId: "tungsten-carbide-roll-rings",
+    image: imageForProduct("tungsten-carbide-roll-rings"),
+    category: productFor("tungsten-carbide-roll-rings")?.category,
+  },
+  {
+    name: "Composite Rolls",
+    productId: "composite-rolls",
+    image: imageForProduct("composite-rolls"),
+    category: productFor("composite-rolls")?.category,
+  },
+  {
+    name: "HSS Rolls",
+    productId: "high-speed-steel-rolls",
+    image: imageForProduct("high-speed-steel-rolls"),
+    category: productFor("high-speed-steel-rolls")?.category,
+  },
+  {
+    name: "SGI Rolls",
+    productId: "sgi-rolls",
+    image: imageForProduct("sgi-rolls"),
+    category: productFor("sgi-rolls")?.category,
+  },
+  { name: "Adamite Rolls" },
+  { name: "Pinch Rolls" },
+  {
+    name: "Guide Rolls",
+    productId: "guide-reels",
+    image: imageForProduct("guide-reels"),
+    category: productFor("guide-reels")?.category,
+  },
+  { name: "Other Rolls" },
+];
+
+const productNameFor = (id) =>
+  productCatalog.find((product) => product.id === id)?.name;
+
+export const applications = [
+  {
+    name: "TMT bar rolling",
+    productIds: ["high-speed-steel-rolls", "tungsten-carbide-roll-rings"],
+  },
+  {
+    name: "Wire rod rolling",
+    productIds: ["tungsten-carbide-roll-rings", "high-speed-steel-rolls"],
+  },
+  {
+    name: "Hot rolling",
+    productIds: ["sgi-rolls", "high-speed-steel-rolls", "composite-rolls"],
+  },
+  {
+    name: "Finishing applications",
+    productIds: ["tungsten-carbide-roll-rings"],
+  },
+  {
+    name: "Intermediate / pre-finishing",
+    productIds: ["high-speed-steel-rolls", "sgi-rolls"],
+  },
+  {
+    name: "Guide / pass-line applications",
+    productIds: ["guide-reels"],
+  },
+].map((application) => ({
+  ...application,
+  products: application.productIds
+    .map(productNameFor)
+    .filter(Boolean),
+}));
+
+export const materialSystems = [
+  { name: "Tungsten carbide", productId: "tungsten-carbide-roll-rings" },
+  { name: "High-speed steel", productId: "high-speed-steel-rolls" },
+  { name: "Composite rolls", productId: "composite-rolls" },
+  { name: "Spheroidal graphite iron", productId: "sgi-rolls" },
+  { name: "Adamite rolls" },
+].map((material) => ({
+  ...material,
+  image: material.productId ? imageForProduct(material.productId) : undefined,
+  category: productCatalog.find((product) => product.id === material.productId)
+    ?.category,
+}));
+
+export const costPerTonneSequence = [
+  "Pass life",
+  "Fewer roll changes",
+  "Less interruption",
+  "Lower maintenance",
+  "Reduced downtime",
+  "Long-term value",
+];
+
+export const approach = [
+  {
+    name: "Understand",
+    detail:
+      "Operating conditions, production requirements, and the challenges of each rolling mill.",
+  },
+  {
+    name: "Develop",
+    detail:
+      "Material and product development, informed by actual mill conditions and performance data.",
+  },
+  {
+    name: "Apply",
+    detail:
+      "Application engineering focused on the requirements of TMT bar and wire rod rolling mills.",
+  },
+  {
+    name: "Improve",
+    detail:
+      "Continuous work towards better pass life, wear resistance, consistency, and reliability.",
+  },
+];
+
+export const companyValues = [
+  "Quality",
+  "Application understanding",
+  "Material development",
+  "Continuous R&D",
+  "Consistency",
+  "Reliability",
+  "Long-term partnerships",
+];
+
+export const performancePrinciples = [
+  "Quality",
+  "Consistency",
+  "Reliability",
+  "Continuous development",
+];
+
+export const focusAreas = [
+  "Product quality",
+  "Material development",
+  "Application engineering",
+  "Research & development",
+  "Pass life",
+  "Wear resistance",
+  "Consistency",
+  "Reliability",
+];
+
+export const materialFocusAreas = [
+  "Material development",
+  "Wear resistance",
+  "Pass life",
+  "Application engineering",
 ];

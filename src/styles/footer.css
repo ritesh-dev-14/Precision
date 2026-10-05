@@ -1,0 +1,213 @@
+.site-footer {
+  --footer-paper: #f4f4f1;
+  --footer-ink: #171a1b;
+  --footer-muted: #62696a;
+  --footer-line: #d4d8d6;
+  padding: 68px 0 23px;
+  color: var(--footer-ink);
+  background: var(--footer-paper);
+}
+
+.site-footer__container {
+  width: min(1280px, calc(100% - 112px));
+  margin-inline: auto;
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(110px, 0.55fr) minmax(0, 1fr) minmax(0, 0.8fr);
+  gap: clamp(25px, 4vw, 55px);
+  padding-bottom: 51px;
+}
+
+.site-footer__wordmark {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: fit-content;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.site-footer__wordmark span:last-child {
+  color: var(--footer-muted);
+  font-family: "DM Mono", monospace;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+}
+
+.site-footer__brand p {
+  max-width: 320px;
+  margin: 22px 0 0;
+  color: var(--footer-muted);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.site-footer__label {
+  display: block;
+  margin-bottom: 18px;
+  color: #5a686c;
+  font-family: "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.site-footer__navigation {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.site-footer__navigation a {
+  font-size: 11px;
+  font-weight: 600;
+  transition: color 180ms ease;
+}
+
+.site-footer__navigation a:hover,
+.site-footer__contact a:hover {
+  color: #5a686c;
+}
+
+.site-footer__offices {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  color: var(--footer-muted);
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+.site-footer__offices .site-footer__label {
+  margin-bottom: 0;
+}
+
+.site-footer__offices strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--footer-ink);
+  font-family: "DM Mono", monospace;
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.site-footer__offices div > span {
+  display: block;
+}
+
+.site-footer__contact a {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--footer-line);
+  font-size: 11px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  transition: color 180ms ease;
+}
+
+.site-footer__contact a svg {
+  flex: none;
+  color: #5a686c;
+}
+
+.site-footer__base {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 17px;
+  border-top: 1px solid var(--footer-line);
+  color: var(--footer-muted);
+  font-family: "DM Mono", monospace;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .site-footer__container {
+    width: min(100% - 64px, 760px);
+  }
+
+  .site-footer__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.72fr);
+    gap: 36px 45px;
+  }
+
+  .site-footer__brand p {
+    max-width: 430px;
+  }
+}
+
+@media (max-width: 600px) {
+  .site-footer {
+    padding-top: 55px;
+  }
+
+  .site-footer__container {
+    width: calc(100% - 40px);
+  }
+
+  .site-footer__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 31px;
+    padding-bottom: 38px;
+  }
+
+  .site-footer__brand p {
+    margin-top: 15px;
+    font-size: 11px;
+  }
+
+  .site-footer__navigation {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 18px;
+  }
+
+  .site-footer__navigation .site-footer__label {
+    grid-column: 1 / -1;
+    margin-bottom: 3px;
+  }
+
+  .site-footer__offices {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 20px;
+  }
+
+  .site-footer__offices .site-footer__label {
+    grid-column: 1 / -1;
+  }
+
+  .site-footer__contact {
+    max-width: 420px;
+  }
+
+  .site-footer__base {
+    flex-direction: column;
+    gap: 5px;
+    font-size: 7px;
+  }
+}
+
+@media (max-width: 380px) {
+  .site-footer__container {
+    width: calc(100% - 36px);
+  }
+
+  .site-footer__offices {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

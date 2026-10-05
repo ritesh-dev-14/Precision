@@ -1,20 +1,20 @@
 import { ArrowUpRight } from "lucide-react";
-import { contact, offices } from "../data/company";
+import { company, contact, offices } from "../data/company";
+import "../styles/inner-pages.css";
 export default function Contact() {
   return (
-    <div className="inner-page">
+    <div className="inner-page contact-profile">
       <section className="page-hero page-hero--contact">
         <div className="container">
-          <p className="eyebrow">Let's talk</p>
+          <p className="eyebrow">{company.name}</p>
           <h1>
-            Discuss your rolling
+            Discuss your
             <br />
-            <em>mill requirements with us.</em>
+            <em>rolling requirements.</em>
           </h1>
           <p>
-            For product enquiries, technical requirements, procurement
-            discussions or application-specific requirements, contact our team
-            directly.
+            {company.intro} Contact us to discuss product enquiries, technical
+            requirements, procurement or your rolling application.
           </p>
         </div>
       </section>

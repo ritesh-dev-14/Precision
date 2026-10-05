@@ -1,0 +1,284 @@
+.contact-profile,
+.clients-profile {
+  --inner-paper: #f4f4f1;
+  --inner-white: #fbfbf9;
+  --inner-ink: #171a1b;
+  --inner-muted: #62696a;
+  --inner-line: #d4d8d6;
+  --inner-steel: #5a686c;
+  color: var(--inner-ink);
+  background: var(--inner-paper);
+}
+
+.contact-profile .container,
+.clients-profile .container {
+  width: min(1280px, calc(100% - 112px));
+}
+
+.contact-profile .page-hero,
+.clients-profile .page-hero {
+  padding-block: 150px 84px;
+  background: var(--inner-paper);
+  border-color: var(--inner-line);
+}
+
+.contact-profile .page-hero .eyebrow,
+.clients-profile .page-hero .eyebrow {
+  margin-bottom: 25px;
+  color: var(--inner-steel);
+}
+
+.contact-profile .page-hero h1,
+.clients-profile .page-hero h1 {
+  max-width: 850px;
+  margin-block: 0 23px;
+  font-size: clamp(48px, 6.4vw, 82px);
+  font-weight: 550;
+  letter-spacing: -0.072em;
+  line-height: 0.98;
+  text-transform: uppercase;
+}
+
+.contact-profile .page-hero h1 em,
+.clients-profile .page-hero h1 em {
+  color: var(--inner-steel);
+}
+
+.contact-profile .page-hero .container > p:last-child,
+.clients-profile .page-hero .container > p:last-child {
+  max-width: 620px;
+  margin-bottom: 0;
+  color: var(--inner-muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.contact-profile .contact-page,
+.clients-profile .clients-page {
+  padding-block: clamp(70px, 8vw, 112px);
+}
+
+.contact-profile .contact-methods {
+  gap: 0;
+  margin-bottom: 90px;
+  border-top: 1px solid var(--inner-line);
+  border-bottom: 1px solid var(--inner-line);
+}
+
+.contact-profile .contact-method {
+  min-height: 200px;
+  padding: 25px 30px 25px 0;
+  border: 0;
+  background: transparent;
+}
+
+.contact-profile .contact-method + .contact-method {
+  padding-left: 30px;
+  border-left: 1px solid var(--inner-line);
+}
+
+.contact-profile .contact-method:hover {
+  background: transparent;
+}
+
+.contact-profile .contact-method .eyebrow {
+  color: var(--inner-steel);
+}
+
+.contact-profile .contact-method strong {
+  margin-bottom: 18px;
+  font-size: clamp(20px, 2.5vw, 31px);
+  overflow-wrap: anywhere;
+}
+
+.contact-profile .contact-method > span:last-child {
+  gap: 9px;
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.contact-profile .contact-method > span:last-child svg {
+  transition: transform 180ms ease;
+}
+
+.contact-profile .contact-method:hover > span:last-child svg {
+  transform: translate(3px, -3px);
+}
+
+.contact-profile .locations {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(35px, 8vw, 110px);
+  padding-top: 24px;
+  border-color: var(--inner-line);
+}
+
+.contact-profile .locations > div {
+  min-height: 0;
+}
+
+.contact-profile .locations .eyebrow {
+  margin-bottom: 15px;
+  color: var(--inner-steel);
+}
+
+.contact-profile .locations p:not(.eyebrow) {
+  margin-block: 2px;
+  color: var(--inner-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.clients-profile .page-hero h1 {
+  max-width: 730px;
+}
+
+.clients-profile .directory-intro {
+  align-items: end;
+  gap: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--inner-line);
+}
+
+.clients-profile .directory-intro .eyebrow {
+  margin: 0;
+  color: var(--inner-steel);
+}
+
+.clients-profile .directory-intro p:last-child {
+  margin: 0;
+  color: var(--inner-muted);
+  font-size: 12px;
+}
+
+.clients-profile .client-grid--full {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--inner-line);
+}
+
+.clients-profile .client-name {
+  min-height: 66px;
+  gap: 17px;
+  padding: 20px 20px 18px 0;
+  border-bottom: 1px solid var(--inner-line);
+  color: var(--inner-ink);
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.clients-profile .client-name:nth-child(even) {
+  padding-left: 22px;
+  border-left: 1px solid var(--inner-line);
+}
+
+.clients-profile .client-name span {
+  flex: none;
+  color: var(--inner-steel);
+  font-family: "DM Mono", monospace;
+  font-size: 9px;
+}
+
+@media (max-width: 800px) {
+  .contact-profile .container,
+  .clients-profile .container {
+    width: min(100% - 64px, 760px);
+  }
+
+  .contact-profile .page-hero,
+  .clients-profile .page-hero {
+    padding-block: 132px 65px;
+  }
+
+  .contact-profile .page-hero h1,
+  .clients-profile .page-hero h1 {
+    font-size: clamp(43px, 8vw, 64px);
+  }
+
+  .contact-profile .contact-methods {
+    margin-bottom: 65px;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-profile .container,
+  .clients-profile .container {
+    width: calc(100% - 40px);
+  }
+
+  .contact-profile .page-hero,
+  .clients-profile .page-hero {
+    padding-block: 112px 54px;
+  }
+
+  .contact-profile .page-hero .eyebrow,
+  .clients-profile .page-hero .eyebrow {
+    margin-bottom: 20px;
+    font-size: 9px;
+  }
+
+  .contact-profile .page-hero h1,
+  .clients-profile .page-hero h1 {
+    font-size: clamp(38px, 10vw, 49px);
+    line-height: 1;
+  }
+
+  .contact-profile .page-hero .container > p:last-child,
+  .clients-profile .page-hero .container > p:last-child {
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .contact-profile .contact-methods {
+    grid-template-columns: 1fr;
+    margin-bottom: 52px;
+  }
+
+  .contact-profile .contact-method,
+  .contact-profile .contact-method + .contact-method {
+    min-height: 160px;
+    padding: 20px 0;
+  }
+
+  .contact-profile .contact-method + .contact-method {
+    border-top: 1px solid var(--inner-line);
+    border-left: 0;
+  }
+
+  .contact-profile .contact-method strong {
+    margin-block: 15px;
+    font-size: clamp(20px, 6vw, 26px);
+  }
+
+  .contact-profile .locations {
+    grid-template-columns: 1fr;
+    gap: 29px;
+  }
+
+  .clients-profile .directory-intro {
+    display: block;
+  }
+
+  .clients-profile .directory-intro p:last-child {
+    margin-top: 12px;
+  }
+
+  .clients-profile .client-grid--full {
+    grid-template-columns: 1fr;
+  }
+
+  .clients-profile .client-name,
+  .clients-profile .client-name:nth-child(even) {
+    min-height: 59px;
+    padding: 16px 0;
+    border-left: 0;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 380px) {
+  .contact-profile .container,
+  .clients-profile .container {
+    width: calc(100% - 36px);
+  }
+}
